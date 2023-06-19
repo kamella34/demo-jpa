@@ -2,6 +2,7 @@ package fr.digi.banque.entités;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,6 +26,13 @@ public class Virement extends Operation {
     public Virement(LocalDateTime dateOp, double montant, String motif, Compte compte, String beneficiaire) {
         super(dateOp, montant, motif, compte);
         this.beneficiaire = beneficiaire;
+    }
+
+    @Override
+    public String toString() {
+        return "Virement{" +
+                "beneficiaire='" + beneficiaire + '\'' +
+                '}';
     }
 
     public String getBeneficiaire() {

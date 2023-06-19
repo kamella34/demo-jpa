@@ -9,16 +9,16 @@ import java.util.Set;
 @Table(name = "COMPTE")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TYPE")
-public abstract class Compte {
+public class Compte {
     @Id
-    @GeneratedValue
-    @Column(name="ID")
+    @Column(name = "ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private int numero;
 
     private double solde;
 
-    @ManyToMany(mappedBy ="comptes")
+    @ManyToMany(mappedBy = "comptes")
     private Set<Client> clients;
 
     @OneToMany(mappedBy = "compte")
@@ -26,18 +26,17 @@ public abstract class Compte {
 
     {
         clients = new HashSet<>();
-        operations= new HashSet<>();
+        operations = new HashSet<>();
 
     }
+
     public Compte() {
     }
 
 
-    public Compte(int numero, double solde, Set<Client> clients, Set<Operation> operations) {
+    public Compte(int numero, double solde) {
         this.numero = numero;
         this.solde = solde;
-        this.clients = clients;
-        this.operations = operations;
     }
 
     public Compte(Integer id, int numero, double solde, Set<Client> clients, Set<Operation> operations) {
@@ -46,6 +45,17 @@ public abstract class Compte {
         this.solde = solde;
         this.clients = clients;
         this.operations = operations;
+    }
+
+    @Override
+    public String toString() {
+        return "Compte{" +
+                "id=" + id +
+                ", numero=" + numero +
+                ", solde=" + solde +
+                ", clients=" + clients +
+                ", operations=" + operations +
+                '}';
     }
 
     public Integer getId() {

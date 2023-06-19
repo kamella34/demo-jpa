@@ -4,20 +4,23 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+
 @Entity
-@Table(name="BANQUE")
+@Table(name = "BANQUE")
 public class Banque {
     @Id
-    @Column(name="ID")
-   private Integer id;
-   private String nom;
+    @Column(name = "ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    private String nom;
 
-    @OneToMany(mappedBy="banque")
+    @OneToMany(mappedBy = "banque")
     private Set<Client> clients;
 
     {
         clients = new HashSet<>();
     }
+
     public Banque() {
     }
 
@@ -30,6 +33,19 @@ public class Banque {
     public Banque(String nom, Set<Client> clients) {
         this.nom = nom;
         this.clients = clients;
+    }
+
+    public Banque(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return "Banque{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", clients=" + clients +
+                '}';
     }
 
     public Integer getId() {

@@ -29,9 +29,10 @@ public class Emprunt {
     @JoinColumn(name = "ID_CLIENT")
     private Client client;
 
- {
-    livres = new HashSet<>();
+    {
+        livres = new HashSet<>();
     }
+
     public Emprunt() {
 
     }

@@ -12,13 +12,14 @@ import java.time.LocalDateTime;
 public class Operation {
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime dateOp;
     private double montant;
     private String motif;
 
     @ManyToOne
-    @JoinColumn(name="ID_COMPTE")
+    @JoinColumn(name = "ID_COMPTE")
     private Compte compte;
 
     public Operation() {
@@ -39,7 +40,16 @@ public class Operation {
         this.compte = compte;
     }
 
-
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "id=" + id +
+                ", dateOp=" + dateOp +
+                ", montant=" + montant +
+                ", motif='" + motif + '\'' +
+                ", compte=" + compte +
+                '}';
+    }
 
     public Integer getId() {
         return id;

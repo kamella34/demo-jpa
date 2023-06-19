@@ -18,14 +18,22 @@ public class LivretA extends Compte {
         this.tauxLiv = tauxLiv;
     }
 
-    public LivretA(int numero, double solde, Set<Client> clients, Set<Operation> operations, Double tauxLiv) {
-        super(numero, solde, clients, operations);
+    public LivretA(int numero, double solde, Double tauxLiv) {
+        super(numero, solde);
         this.tauxLiv = tauxLiv;
     }
+
 
     public LivretA(Integer id, int numero, double solde, Set<Client> clients, Set<Operation> operations, Double tauxLiv) {
         super(id, numero, solde, clients, operations);
         this.tauxLiv = tauxLiv;
+    }
+
+    @Override
+    public String toString() {
+        return "LivretA{" +
+                "tauxLiv=" + tauxLiv +
+                '}';
     }
 
     public Double getTauxLiv() {
@@ -35,4 +43,6 @@ public class LivretA extends Compte {
     public void setTauxLiv(Double tauxLiv) {
         this.tauxLiv = tauxLiv;
     }
+
+
 }

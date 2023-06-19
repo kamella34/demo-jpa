@@ -7,11 +7,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="CLIENT")
+@Table(name = "CLIENT")
 public class Client {
 
     @Id
-    @Column(name="ID")
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String prenom;
     private String nom;
@@ -24,7 +25,7 @@ public class Client {
 
 
     @ManyToOne
-    @JoinColumn(name="ID_BANQUE")
+    @JoinColumn(name = "ID_BANQUE")
     private Banque banque;
 
     @Embedded
@@ -33,14 +34,20 @@ public class Client {
     {
         comptes = new HashSet<>();
     }
+
     public Client() {
     }
 
-    public Client(String prenom, String nom, LocalDate dateNaissance, Set<Compte> comptes, Banque banque, Adresse adresse) {
+    public Client(String prenom, String nom, LocalDate dateNaissance) {
         this.prenom = prenom;
         this.nom = nom;
         this.dateNaissance = dateNaissance;
-        this.comptes = comptes;
+    }
+
+    public Client(String prenom, String nom, LocalDate dateNaissance, Banque banque, Adresse adresse) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.dateNaissance = dateNaissance;
         this.banque = banque;
         this.adresse = adresse;
     }
@@ -53,6 +60,19 @@ public class Client {
         this.comptes = comptes;
         this.banque = banque;
         this.adresse = adresse;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                ", comptes=" + comptes +
+                ", banque=" + banque +
+                ", adresse=" + adresse +
+                '}';
     }
 
     public Integer getId() {
@@ -109,5 +129,9 @@ public class Client {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
+    }
+
+    public void addCompte(Compte compte){
+        comptes.add(compte);
     }
 }

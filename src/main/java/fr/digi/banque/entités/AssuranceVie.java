@@ -5,11 +5,12 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 
 public class AssuranceVie extends Compte {
-    private Integer idAssuranceVie;
+
     private LocalDate dateFin;
     private double tauxAss;
 
@@ -17,19 +18,35 @@ public class AssuranceVie extends Compte {
 
     }
 
-    public AssuranceVie(Integer idAssuranceVie, LocalDate dateFin, double tauxAss) {
-        this.idAssuranceVie = idAssuranceVie;
+    public AssuranceVie(LocalDate dateFin, double tauxAss) {
+
         this.dateFin = dateFin;
         this.tauxAss = tauxAss;
     }
 
-    public Integer getIdAssuranceVie() {
-        return idAssuranceVie;
+    public AssuranceVie(int numero, double solde, LocalDate dateFin, double tauxAss) {
+        super(numero, solde);
+        this.dateFin = dateFin;
+        this.tauxAss = tauxAss;
     }
 
-    public void setIdAssuranceVie(Integer idAssuranceVie) {
-        this.idAssuranceVie = idAssuranceVie;
+    public AssuranceVie(Integer id, int numero, double solde, Set<Client> clients, Set<Operation> operations, LocalDate dateFin, double tauxAss) {
+        super(id, numero, solde, clients, operations);
+        this.dateFin = dateFin;
+        this.tauxAss = tauxAss;
     }
+
+    @Override
+    public String toString() {
+        return "AssuranceVie{" +
+                ", dateFin=" + dateFin +
+                ", tauxAss=" + tauxAss +
+                '}';
+    }
+
+
+
+
 
     public LocalDate getDateFin() {
         return dateFin;
