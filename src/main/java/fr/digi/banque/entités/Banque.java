@@ -10,11 +10,12 @@ import java.util.Set;
 public class Banque {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
 
-    @OneToMany(mappedBy = "banque")
+    @OneToMany(mappedBy = "banque", cascade = CascadeType.PERSIST)
+
     private Set<Client> clients;
 
     {
@@ -70,5 +71,13 @@ public class Banque {
 
     public void setClients(Set<Client> clients) {
         this.clients = clients;
+    }
+
+    public void addClient(Client client) {
+        if (null != client) {
+            client.setBanque(this);
+        }
+
+
     }
 }

@@ -21,7 +21,7 @@ public class Compte {
     @ManyToMany(mappedBy = "comptes")
     private Set<Client> clients;
 
-    @OneToMany(mappedBy = "compte")
+    @OneToMany(mappedBy = "compte",cascade = CascadeType.PERSIST)
     private Set<Operation> operations;
 
     {

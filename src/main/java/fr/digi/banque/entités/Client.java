@@ -17,7 +17,7 @@ public class Client {
     private String prenom;
     private String nom;
     private LocalDate dateNaissance;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "CLIENT_COMPTE",
             joinColumns = @JoinColumn(name = "ID_CLIENT", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "ID"))
@@ -48,7 +48,7 @@ public class Client {
         this.prenom = prenom;
         this.nom = nom;
         this.dateNaissance = dateNaissance;
-        this.banque = banque;
+        this.setBanque(banque);
         this.adresse = adresse;
     }
 
@@ -58,7 +58,7 @@ public class Client {
         this.nom = nom;
         this.dateNaissance = dateNaissance;
         this.comptes = comptes;
-        this.banque = banque;
+        this.setBanque(banque);
         this.adresse = adresse;
     }
 
@@ -120,7 +120,13 @@ public class Client {
     }
 
     public void setBanque(Banque banque) {
+        if(this.banque != null){
+            this.banque.getClients().remove(this);
+        }
         this.banque = banque;
+        if(this.banque != null){
+            this.banque.getClients().add(this);
+        }
     }
 
     public Adresse getAdresse() {
