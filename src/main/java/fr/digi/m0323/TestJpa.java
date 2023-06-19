@@ -17,45 +17,54 @@ public class TestJpa {
                 System.out.println(l);
             }
 
-         /*   Livre newBook = new Livre();
+
+            Livre newBook = new Livre();
             newBook.setAuteur("Sega");
             newBook.setTitre("Jpa");
             em.persist(newBook);
 
             Livre newBook2 = new Livre();
-            newBook2.setId(6);
             newBook2.setAuteur("Sega");
             newBook2.setTitre("jcbd");
-            em.persist(newBook2);*/
+            em.persist(newBook2);
 
-            Livre modifLivre = em.find(Livre.class,5);
-            if (null != modifLivre){
+
+            Livre newBook3 = new Livre("java","Sega");
+            em.persist(newBook3);
+
+
+            Livre modifLivre = em.find(Livre.class, 5);
+            if (null != modifLivre) {
                 modifLivre.setTitre("Du plaisir dans la cuisine");
             }
 
 
             TypedQuery<Livre> query = em.createQuery("from Livre  where titre='Jpa'", Livre.class);
-            TypedQuery<Livre> query2 = em.createQuery("select l3 from Livre l3 where l3.auteur='Sega'",Livre.class);
-            TypedQuery<Livre> queryList = em.createQuery("select list from Livre list ",Livre.class);
+            TypedQuery<Livre> query2 = em.createQuery("select l3 from Livre l3 where l3.auteur='Sega'", Livre.class);
+            TypedQuery<Livre> queryList = em.createQuery("select list from Livre list ", Livre.class);
 
             Livre l1 = query.getResultList().get(0);
             System.out.println(l1);
 
 
-            for (Livre l2 : query2.getResultList()){
+            for (Livre l2 : query2.getResultList()) {
                 System.out.println(l2);
             }
 
             System.out.println(query2.getResultList());
 
 
-           Livre removeBook = em.find(Livre.class,3);
-            if(null != removeBook){
+            Livre removeBook = em.find(Livre.class, 3);
+            if (null != removeBook) {
                 em.remove(removeBook);
             }
 
             System.out.println(queryList.getResultList());
+            for (Livre llist : queryList.getResultList()) {
+                System.out.println(llist);
+            }
 
+            //em.getTransaction().commit();
             et.commit();
         }
     }

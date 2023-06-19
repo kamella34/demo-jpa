@@ -2,6 +2,9 @@ package fr.digi.m0323.entité;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 //@Entity(name="livre")
 
@@ -18,6 +21,12 @@ private String titre;
   @Column(name="auteur")
 private String auteur;
 
+  @ManyToMany(mappedBy="livres")
+  private Set<Emprunt> emprunts;
+
+/*  {
+    emprunts = new HashSet<>();
+  }*/
   public Livre() {
 
   }
@@ -36,8 +45,8 @@ private String auteur;
   @Override
   public String toString() {
     return "Livre{" +
-            "id=" + id +
-            ", titre='" + titre + '\'' +
+
+            " titre='" + titre + '\'' +
             ", auteur='" + auteur + '\'' +
             '}';
   }
