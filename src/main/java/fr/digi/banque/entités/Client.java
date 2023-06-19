@@ -3,6 +3,7 @@ package fr.digi.banque.entités;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,7 @@ public class Client {
             inverseJoinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "ID"))
     private Set<Compte> comptes;
 
+
     @ManyToOne
     @JoinColumn(name="ID_BANQUE")
     private Banque banque;
@@ -28,7 +30,9 @@ public class Client {
     @Embedded
     private Adresse adresse;
 
-
+    {
+        comptes = new HashSet<>();
+    }
     public Client() {
     }
 

@@ -24,9 +24,9 @@ private String auteur;
   @ManyToMany(mappedBy="livres")
   private Set<Emprunt> emprunts;
 
-/*  {
+  {
     emprunts = new HashSet<>();
-  }*/
+  }
   public Livre() {
 
   }

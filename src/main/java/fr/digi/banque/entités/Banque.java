@@ -2,6 +2,7 @@ package fr.digi.banque.entités;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 @Entity
 @Table(name="BANQUE")
@@ -14,6 +15,9 @@ public class Banque {
     @OneToMany(mappedBy="banque")
     private Set<Client> clients;
 
+    {
+        clients = new HashSet<>();
+    }
     public Banque() {
     }
 

@@ -2,6 +2,7 @@ package fr.digi.banque.entités;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,8 +24,14 @@ public abstract class Compte {
     @OneToMany(mappedBy = "compte")
     private Set<Operation> operations;
 
+    {
+        clients = new HashSet<>();
+        operations= new HashSet<>();
+
+    }
     public Compte() {
     }
+
 
     public Compte(int numero, double solde, Set<Client> clients, Set<Operation> operations) {
         this.numero = numero;

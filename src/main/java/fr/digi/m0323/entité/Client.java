@@ -20,9 +20,9 @@ public class Client {
 private Set<Emprunt>emprunts;
 
 
-/*    {
+   {
         emprunts = new HashSet<>();
-    }*/
+    }
     public Client() {
 
     }
