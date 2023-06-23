@@ -65,9 +65,21 @@ public class TestBanque {
            //em.persist(virement1);
 
             Operation op1 = new Operation(dt1,10000,"dessous de table",compte1);
-            //em.persist(op1);
+            Operation op2 = new Operation(dt1,100, "un motif");
 
+
+            op2.setCompte(compte1);
+
+
+            op2.setMotif("un autre motif");
+            em.persist(op1);
+            em.persist(op2);
             em.persist(banque1);
+
+
+            System.out.println("ICI" + compte1);
+            em.remove(op2);
+
             et.commit();
         }
     }

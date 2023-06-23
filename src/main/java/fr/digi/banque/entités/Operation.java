@@ -30,14 +30,22 @@ public class Operation {
         this.dateOp = dateOp;
         this.montant = montant;
         this.motif = motif;
-        this.compte = compte;
+        //this.compte = compte;
+        this.setCompte(compte) ;
     }
 
     public Operation(LocalDateTime dateOp, double montant, String motif, Compte compte) {
         this.dateOp = dateOp;
         this.montant = montant;
         this.motif = motif;
-        this.compte = compte;
+        //this.compte = compte;
+        this.setCompte(compte) ;
+    }
+
+    public Operation(LocalDateTime dateOp, double montant, String motif) {
+        this.dateOp = dateOp;
+        this.montant = montant;
+        this.motif = motif;
     }
 
     @Override
@@ -87,7 +95,15 @@ public class Operation {
         return compte;
     }
 
-    public void setCompte(Compte compte) {
+
+    public void setCompte(Compte compte){
+        if(this.compte != null){
+            this.compte.getOperations().remove(this);
+        }
         this.compte = compte;
+        if(this.compte != null){
+            this.compte.getOperations().add(this);
+        }
     }
+
 }

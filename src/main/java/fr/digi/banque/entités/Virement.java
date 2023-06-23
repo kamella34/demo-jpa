@@ -42,4 +42,6 @@ public class Virement extends Operation {
     public void setBeneficiaire(String beneficiaire) {
         this.beneficiaire = beneficiaire;
     }
+
+
 }

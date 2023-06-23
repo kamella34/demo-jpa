@@ -14,7 +14,8 @@ public class Banque {
     private Integer id;
     private String nom;
 
-    @OneToMany(mappedBy = "banque", cascade = CascadeType.PERSIST)
+
+    @OneToMany(mappedBy = "banque", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 
     private Set<Client> clients;
 
@@ -77,6 +78,7 @@ public class Banque {
         if (null != client) {
             client.setBanque(this);
         }
+
 
 
     }

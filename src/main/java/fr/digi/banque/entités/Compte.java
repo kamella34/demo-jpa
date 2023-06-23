@@ -12,7 +12,7 @@ import java.util.Set;
 public class Compte {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private int numero;
 
@@ -21,7 +21,7 @@ public class Compte {
     @ManyToMany(mappedBy = "comptes")
     private Set<Client> clients;
 
-    @OneToMany(mappedBy = "compte",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "compte", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Operation> operations;
 
     {
@@ -97,4 +97,12 @@ public class Compte {
     public void setOperations(Set<Operation> operations) {
         this.operations = operations;
     }
+
+
+    public void addOperation(Operation operation) {
+            operations.add(operation);
+        }
+
+
+
 }
